@@ -11,14 +11,13 @@ const TEMPID_SIZE = UID_SIZE + TIME_SIZE * 2;
 const IV_SIZE = 16;
 const AUTHTAG_SIZE = 16;
 
-const getTempIDs = async (uid: string) => {
-  console.log('getTempIDs:', 'uid', uid);
-
+const getTempIDs = async (uid: string, data: any) => {
+  const pushID = data['pushID'];
   const encryptionKey = await getEncryptionKey();
 
   const tempIDs = await Promise.all(
     [...Array(config.tempID.batchSize).keys()].map(
-      async (i) => generateTempId(encryptionKey, uid, i)
+      async (i) => generateTempId(encryptionKey, pushID, i)
     )
   );
 
