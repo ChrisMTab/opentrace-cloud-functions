@@ -24,12 +24,13 @@ const processUploadedData = async (object: ObjectMetadata) => {
   }
   console.log("Attempting to download file: " + object.name);
 
-  let record = await storage.bucket(object.bucket)
+  let fileContents = await storage.bucket(object.bucket)
                             .file(object.name)
                             .download()
   
-  console.log("File downloaded: " + record);
-  const allMessages = record.records.map((event: { msg: string; }) => {
+  console.log("File downloaded: " + fileContents);
+  const fileJSON = JSON.parse(fileContents);
+  const allMessages = fileJSON.records.map((event: { msg: string; }) => {
     return event.msg
   })
   let uniqueMessages = new Set<string>(allMessages);
@@ -45,7 +46,8 @@ const processUploadedData = async (object: ObjectMetadata) => {
     if (!isValid) {
       return
     }
-    pushTokensToNotify.push(decryptedTempID.uid)
+    console.log('Appending: ' + decryptedTempID);
+    pushTokensToNotify.push(decryptedTempID.uid);
     
   })
   await sendPushNotifications(pushTokensToNotify);
