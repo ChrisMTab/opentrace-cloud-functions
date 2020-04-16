@@ -23,12 +23,13 @@ const processUploadedData = async (object: ObjectMetadata) => {
     throw new functions.https.HttpsError('invalid-argument', 'No file name');;
   }
   console.log("Attempting to download file: " + object.name);
+
   let record = await storage.bucket(object.bucket)
                             .file(object.name)
                             .download()
   
   console.log("File downloaded: " + record);
-  const allMessages = record.events.map((event: { msg: string; }) => {
+  const allMessages = record.records.map((event: { msg: string; }) => {
     return event.msg
   })
   let uniqueMessages = new Set<string>(allMessages);
