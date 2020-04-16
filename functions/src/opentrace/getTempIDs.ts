@@ -26,7 +26,8 @@ const getTempIDs = async (uid: string, data: any) => {
     .limit(1);
 
   
-   const uniqueIDResult = await datastore.runQuery(query).first;
+   const results = await datastore.runQuery(query);
+   const uniqueIDResult = results[0][0];
   
    if (uniqueIDResult == null) {
     uniqueID = crypto.randomBytes(21).toString('base64');
