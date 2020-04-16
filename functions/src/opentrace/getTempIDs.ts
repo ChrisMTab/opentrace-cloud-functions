@@ -10,10 +10,20 @@ const TIME_SIZE = 4;
 const TEMPID_SIZE = UID_SIZE + TIME_SIZE * 2;
 const IV_SIZE = 16;
 const AUTHTAG_SIZE = 16;
+const { Datastore } = require('@google-cloud/datastore');
+const datastore = new Datastore();
 
 const getTempIDs = async (uid: string, data: any) => {
   const pushID = data['pushID'];
   const encryptionKey = await getEncryptionKey();
+
+  await datastore.save({
+    key: datastore.key('TempIDs'),
+    data: {
+      pushToken: pushID,
+      tempID: "radom generated string here"
+    },
+  });
 
   const tempIDs = await Promise.all(
     [...Array(config.tempID.batchSize).keys()].map(
