@@ -1,0 +1,86 @@
+[debug] [2020-04-16T10:26:44.296Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T10:26:44.298Z] Command:       /usr/local/Cellar/node/12.5.0/bin/node /usr/local/bin/firebase emulators:start --inspect-functions
+[debug] [2020-04-16T10:26:44.298Z] CLI Version:   8.0.3
+[debug] [2020-04-16T10:26:44.298Z] Platform:      darwin
+[debug] [2020-04-16T10:26:44.298Z] Node Version:  v12.5.0
+[debug] [2020-04-16T10:26:44.299Z] Time:          Thu Apr 16 2020 11:26:44 GMT+0100 (British Summer Time)
+[debug] [2020-04-16T10:26:44.300Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T10:26:44.300Z] 
+[debug] [2020-04-16T10:26:44.310Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-16T10:26:44.311Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[debug] [2020-04-16T10:26:44.360Z] [hub] writing locator at /var/folders/2k/qbwbwrbx0ns6_cgqy22z9fd40000gp/T/hub-intelligent-lockdown-274213.json
+[info] ✔  hub: emulator hub started at http://localhost:4400
+[warn] ⚠  functions: You are running the functions emulator in debug mode (port=9229). This means that functions will execute in sequence rather than in parallel.
+[warn] ⚠  Your requested "node" version "10" doesn't match your global version "12"
+[info] ✔  functions: functions emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions" for Cloud Functions...
+[debug] [2020-04-16T10:26:44.648Z] [worker-pool] addWorker(~shared~) 
+[debug] [2020-04-16T10:26:44.649Z] [worker-pool] Adding worker with key ~shared~, total=1 
+[debug] [2020-04-16T10:26:44.649Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-16T10:26:44.649Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: Assigning socketPath: /var/folders/2k/qbwbwrbx0ns6_cgqy22z9fd40000gp/T/fire_emu_10662.sock 
+[debug] [2020-04-16T10:26:44.650Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: BUSY 
+[info] >  Debugger listening on ws://localhost:9229/cae13347-4db5-4fea-8ee4-123b0cc33878 {"user":"Debugger listening on ws://localhost:9229/cae13347-4db5-4fea-8ee4-123b0cc33878"}
+[info] >  Debugger listening on ws://localhost:9229/cae13347-4db5-4fea-8ee4-123b0cc33878 {"user":"Debugger listening on ws://localhost:9229/cae13347-4db5-4fea-8ee4-123b0cc33878"}
+[info] >  For help, see: https://nodejs.org/en/docs/inspector {"user":"For help, see: https://nodejs.org/en/docs/inspector"}
+[debug] [2020-04-16T10:26:44.921Z] [runtime-status] [10662] Functions runtime initialized. {"cwd":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions","node_version":"12.5.0"} 
+[debug] [2020-04-16T10:26:44.922Z] [runtime-status] [10662] Disabled runtime features: {"timeout":true} 
+[debug] [2020-04-16T10:26:44.927Z] [runtime-status] [10662] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-16T10:26:44.928Z] [runtime-status] [10662] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:26:44.930Z] [runtime-status] [10662] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-16T10:26:44.985Z] [runtime-status] [10662] Checked functions.config() {"config":{}} 
+[debug] [2020-04-16T10:26:44.986Z] [runtime-status] [10662] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:26:44.987Z] [runtime-status] [10662] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-16T10:26:44.987Z] [runtime-status] [10662] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:26:44.987Z] [runtime-status] [10662] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-16T10:26:44.989Z] [runtime-status] [10662] initializeApp(DEFAULT) {"databaseURL":"https://intelligent-lockdown-274213.firebaseio.com","storageBucket":"intelligent-lockdown-274213.appspot.com","projectId":"intelligent-lockdown-274213"} 
+[debug] [2020-04-16T10:26:45.612Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: IDLE 
+[debug] [2020-04-16T10:26:45.613Z] Unsupported trigger: {"regions":["europe-west2"],"timeout":"60s","availableMemoryMb":256,"eventTrigger":{"resource":"projects/_/buckets/intelligent-lockdown-274213.appspot.com","eventType":"google.storage.object.finalize","service":"storage.googleapis.com"},"name":"processUploadedData","entryPoint":"processUploadedData"} 
+[info] ✔  functions[getHandshakePin]: http function initialized (http://localhost:5001/intelligent-lockdown-274213/europe-west2/getHandshakePin).
+[info] ✔  functions[getTempIDs]: http function initialized (http://localhost:5001/intelligent-lockdown-274213/europe-west2/getTempIDs).
+[info] ✔  functions[getUploadToken]: http function initialized (http://localhost:5001/intelligent-lockdown-274213/europe-west2/getUploadToken).
+[info] i  functions[processUploadedData]: function ignored because the storage emulator does not exist or is not running.
+[info] ✔  emulators: All emulators started, it is now safe to connect.
+[debug] [2020-04-16T10:27:12.072Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-04-16T10:27:12.072Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-04-16T10:27:12.073Z] Accepted request POST /intelligent-lockdown-274213/europe-west2/getTempIDs --> getTempIDs
+[debug] [2020-04-16T10:27:12.073Z] [worker-pool] submitWork(triggerId=getTempIDs) 
+[debug] [2020-04-16T10:27:12.073Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: Assigning socketPath: /var/folders/2k/qbwbwrbx0ns6_cgqy22z9fd40000gp/T/fire_emu_10662.sock 
+[debug] [2020-04-16T10:27:12.074Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: BUSY 
+[debug] [2020-04-16T10:27:12.074Z] [runtime-status] [10662] Trigger "getTempIDs" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "getTempIDs"
+[debug] [2020-04-16T10:27:12.075Z] [runtime-status] [10662] triggerDefinition {"regions":["europe-west2"],"timeout":"60s","availableMemoryMb":256,"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"getTempIDs","entryPoint":"getTempIDs"} 
+[debug] [2020-04-16T10:27:12.075Z] [runtime-status] [10662] Running getTempIDs in mode HTTPS 
+[debug] [2020-04-16T10:27:12.080Z] [runtime-status] [10662] Attempting to listen to socketPath: /var/folders/2k/qbwbwrbx0ns6_cgqy22z9fd40000gp/T/fire_emu_10662.sock 
+[debug] [2020-04-16T10:27:12.083Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-04-16T10:27:12.111Z] [runtime-status] [10662] Ephemeral server handling POST request 
+[debug] [2020-04-16T10:27:12.113Z] [runtime-status] [10662] No callable functions auth found 
+[debug] [2020-04-16T10:27:12.114Z] [runtime-status] [10662] Ephemeral server survived. 
+[info] i  functions: Finished "getTempIDs" in ~1s
+[debug] [2020-04-16T10:27:12.121Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: IDLE 
+[debug] [2020-04-16T10:27:12.121Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-04-16T10:33:05.930Z] File /Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/src/opentrace/getTempIDs.ts changed, reloading triggers 
+[debug] [2020-04-16T10:33:06.931Z] [worker-pool] Shutting down IDLE worker (~shared~) 
+[debug] [2020-04-16T10:33:06.931Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: FINISHING 
+[debug] [2020-04-16T10:33:06.940Z] [worker-pool] addWorker(~shared~) 
+[debug] [2020-04-16T10:33:06.941Z] [worker-pool] Adding worker with key ~shared~, total=2 
+[debug] [2020-04-16T10:33:06.941Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-04-16T10:33:06.941Z] [worker-~shared~-32afcd66-56ea-4be2-abab-5b53b987ce61]: Assigning socketPath: /var/folders/2k/qbwbwrbx0ns6_cgqy22z9fd40000gp/T/fire_emu_10888.sock 
+[debug] [2020-04-16T10:33:06.941Z] [worker-~shared~-32afcd66-56ea-4be2-abab-5b53b987ce61]: BUSY 
+[debug] [2020-04-16T10:33:06.946Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: exited 
+[debug] [2020-04-16T10:33:06.946Z] [worker-~shared~-0b6e5153-46fb-43f7-b7d9-1017a0bd4439]: FINISHED 
+[info] >  Debugger listening on ws://localhost:9229/dd1c3957-bf93-4b31-98d1-a04a5251fad2 {"user":"Debugger listening on ws://localhost:9229/dd1c3957-bf93-4b31-98d1-a04a5251fad2"}
+[info] >  Debugger listening on ws://localhost:9229/dd1c3957-bf93-4b31-98d1-a04a5251fad2 {"user":"Debugger listening on ws://localhost:9229/dd1c3957-bf93-4b31-98d1-a04a5251fad2"}
+[info] >  For help, see: https://nodejs.org/en/docs/inspector {"user":"For help, see: https://nodejs.org/en/docs/inspector"}
+[debug] [2020-04-16T10:33:07.868Z] [runtime-status] [10888] Functions runtime initialized. {"cwd":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions","node_version":"12.5.0"} 
+[debug] [2020-04-16T10:33:07.870Z] [runtime-status] [10888] Disabled runtime features: {"timeout":true} 
+[debug] [2020-04-16T10:33:07.874Z] [runtime-status] [10888] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-16T10:33:07.876Z] [runtime-status] [10888] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:33:07.878Z] [runtime-status] [10888] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-04-16T10:33:07.939Z] [runtime-status] [10888] Checked functions.config() {"config":{}} 
+[debug] [2020-04-16T10:33:07.940Z] [runtime-status] [10888] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:33:07.941Z] [runtime-status] [10888] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-04-16T10:33:07.941Z] [runtime-status] [10888] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-04-16T10:33:07.941Z] [runtime-status] [10888] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/neilhorton/Documents/Projects/COVIDResponse/opentrace-cloud-functions/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-04-16T10:33:07.944Z] [runtime-status] [10888] initializeApp(DEFAULT) {"databaseURL":"https://intelligent-lockdown-274213.firebaseio.com","storageBucket":"intelligent-lockdown-274213.appspot.com","projectId":"intelligent-lockdown-274213"} 
+[debug] [2020-04-16T10:33:08.648Z] [worker-~shared~-32afcd66-56ea-4be2-abab-5b53b987ce61]: IDLE 
