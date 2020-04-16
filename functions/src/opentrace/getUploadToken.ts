@@ -6,6 +6,9 @@ import getEncryptionKey from "./utils/getEncryptionKey";
 import CustomEncrypter from "./utils/CustomEncrypter";
 import formatTimestamp from "./utils/formatTimestamp";
 
+const { Datastore } = require('@google-cloud/datastore');
+const datastore = new Datastore();
+
 /**
  * Get upload token by passing in a secret string as `data`
  */
@@ -15,6 +18,7 @@ const getUploadToken = async (uid: string, data: any, context: functions.https.C
   let valid = false;
   if (data) {
     const uploadCodes = await retrieveUploadCodes();
+    console.log(uploadCodes);
     console.log('getUploadToken:', `obtained ${uploadCodes.length} upload codes`);
     valid = uploadCodes.find(x => x === data) !== undefined;
     console.log('getUploadToken:', `data is ${valid ? 'valid' : 'not valid'} code`);
@@ -63,17 +67,14 @@ export async function storeUploadCodes(uploadCodes: string[]) {
 }
 
 export async function retrieveUploadCodes(): Promise<string[]> {
-  const document = await admin.firestore().collection('codes').doc('uploadCode').get();
 
-  // Prepare encrypter
-  const encryptionKey = await getEncryptionKey();
-  const customEncrypter = new CustomEncrypter(encryptionKey);
+  const query = datastore.createQuery('UploadCodes')
 
-  const payloadData = Buffer.from(document.get('uploadCode'), 'base64');
-
-  const decryptedData = customEncrypter.decodeAndDecrypt(payloadData, [payloadData.length - 32, 16, 16]);
-
-  return JSON.parse(Buffer.from(decryptedData, 'base64').toString());
+  const results = await datastore.runQuery(query)
+  console.log(results[0])
+  return await results[0].map((uploadCodeEntity: { code: string; }) => {
+    return uploadCodeEntity.code
+  })
 }
 
 /**
