@@ -4,7 +4,9 @@ import { decryptTempID } from "./getTempIDs";
 import getEncryptionKey from "./utils/getEncryptionKey";
 import * as admin from "firebase-admin";
 
-const storage = require('@google-cloud/storage');
+const {Storage} = require('@google-cloud/storage');
+ 
+const storage = new Storage();
 
 const processUploadedData = async (object: ObjectMetadata) => {
 
