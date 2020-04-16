@@ -20,14 +20,18 @@ const processUploadedData = async (object: ObjectMetadata) => {
     console.log("file name not provided");
     throw new functions.https.HttpsError('invalid-argument', 'No file name');;
   }
+  console.log("Attempting to download file: " + object.name);
   let record = await storage.bucket(object.bucket)
                             .file(object.name)
                             .download()
   
+  console.log("File downloaded: " + record);
   const allMessages = record.events.map((event: { msg: string; }) => {
     return event.msg
   })
   let uniqueMessages = new Set<string>(allMessages);
+
+  console.log("Unique messages: " + uniqueMessages);
 
   const encryptionKey = await getEncryptionKey();
   var pushTokensToNotify: string[] = []
@@ -41,10 +45,11 @@ const processUploadedData = async (object: ObjectMetadata) => {
     pushTokensToNotify.push(decryptedTempID.uid)
     
   })
-  sendPushNotifications(pushTokensToNotify);
+  await sendPushNotifications(pushTokensToNotify);
 };
 
 async function sendPushNotifications(pushIDs: string[]) {
+  console.log("Attempting push to" + pushIDs);
   // Notification details.
   const payload = {
     notification: {
