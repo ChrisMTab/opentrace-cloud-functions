@@ -10,14 +10,40 @@ const TIME_SIZE = 4;
 const TEMPID_SIZE = UID_SIZE + TIME_SIZE * 2;
 const IV_SIZE = 16;
 const AUTHTAG_SIZE = 16;
+const { Datastore } = require('@google-cloud/datastore');
+const datastore = new Datastore();
+const crypto = require("crypto");
 
 const getTempIDs = async (uid: string, data: any) => {
   const pushID = data['pushID'];
   const encryptionKey = await getEncryptionKey();
+  
+  var uniqueID = '';
+
+  const query = datastore
+    .createQuery('UniqueIDs')
+    .filter('pushToken', '=', pushID)
+    .limit(1);
+
+  
+   const uniqueIDResult = await datastore.runQuery(query).first;
+  
+   if (uniqueIDResult == null) {
+    uniqueID = crypto.randomBytes(21).toString('base64');
+    await datastore.save({
+      key: datastore.key('UniqueIDs'),
+      data: {
+        pushToken: pushID,
+        uniqueID: uniqueID
+      },
+    });
+   } else {
+    uniqueID = uniqueIDResult['uniqueID']
+   }
 
   const tempIDs = await Promise.all(
     [...Array(config.tempID.batchSize).keys()].map(
-      async (i) => generateTempId(encryptionKey, pushID, i)
+      async (i) => generateTempId(encryptionKey, uniqueID, i)
     )
   );
 
