@@ -5,8 +5,10 @@ import getEncryptionKey from "./utils/getEncryptionKey";
 import * as admin from "firebase-admin";
 
 const {Storage} = require('@google-cloud/storage');
- 
 const storage = new Storage();
+
+const { Datastore } = require('@google-cloud/datastore');
+const datastore = new Datastore();
 
 const processUploadedData = async (object: ObjectMetadata) => {
 
@@ -30,28 +32,41 @@ const processUploadedData = async (object: ObjectMetadata) => {
   
   console.log("File downloaded: " + fileContents);
   const fileJSON = JSON.parse(fileContents);
-  const allMessages = fileJSON.records.map((event: { msg: string; }) => {
+  const allMessages = fileJSON.records.filter((event: { msg: string; }) => {
+    return event.msg != null && event.msg !== 'not_found'
+  }).map((event: { msg: string; }) => {
     return event.msg
   })
   let uniqueMessages = new Set<string>(allMessages);
 
-  console.log("Unique messages: " + uniqueMessages);
-
   const encryptionKey = await getEncryptionKey();
-  var pushTokensToNotify: string[] = []
-  uniqueMessages.forEach(async (tempID: string) => {
-    
-    const decryptedTempID = decryptTempID(tempID, encryptionKey);
-    const isValid = await validateTempID(decryptedTempID.uid, decryptedTempID.startTime, decryptedTempID.expiryTime);
-    if (!isValid) {
-      return
-    }
-    console.log('Appending: ' + decryptedTempID);
-    pushTokensToNotify.push(decryptedTempID.uid);
-    
-  })
-  await sendPushNotifications(pushTokensToNotify);
+  const pushTokensToNotify = await Promise.all(
+    Array.from(uniqueMessages).map(
+      async (tempID: string) => extractPushToken(encryptionKey, tempID)
+    )
+  );
+  const pushResult = await sendPushNotifications(pushTokensToNotify);
+  console.log(pushResult)
 };
+
+async function extractPushToken(encryptionKey: Buffer, tempID: string) {
+  if (tempID === 'not_found') {
+    return "MISSING_TOKEN"
+  }
+  console.log("Attempting to decrypt: " + tempID)
+  const decryptedTempID = decryptTempID(tempID, encryptionKey);
+  
+  const query = datastore
+    .createQuery('UniqueIDs')
+    .filter('uniqueID', '=', decryptedTempID.uid)
+    .limit(1);
+
+  
+   const results = await datastore.runQuery(query);
+   const pushToken = results[0][0].pushToken;
+   console.log('Appending: ' + pushToken);
+   return pushToken
+}
 
 async function sendPushNotifications(pushIDs: string[]) {
   console.log("Attempting push to" + pushIDs);
@@ -66,8 +81,8 @@ async function sendPushNotifications(pushIDs: string[]) {
   return await admin.messaging().sendToDevice(pushIDs, payload);
 }
 
-async function validateTempID(pushID: string, startTime: number, endTime: number): Promise<boolean> {
-  return true
-}
+// async function validateTempID(pushID: string, startTime: number, endTime: number): Promise<boolean> {
+//   return true
+// }
 
 export default processUploadedData;
